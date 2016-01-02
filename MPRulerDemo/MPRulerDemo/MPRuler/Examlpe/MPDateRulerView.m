@@ -78,4 +78,11 @@
     return itemScale;
 }
 
+- (void)rulerView:(MPRulerView *)rulerView didChangedIndicatorItem:(NSInteger)item
+{
+    if(_dataChangedBlock){
+        _dataChangedBlock(1970 + item / 12,item % 12 + 1);
+    }
+}
+
 @end

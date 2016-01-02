@@ -8,6 +8,10 @@
 
 #import "MPRulerView.h"
 
+typedef void(^MPDataRulerViewDataChangedBlock)(NSInteger year, NSInteger month);
+
 @interface MPDateRulerView : MPRulerView
+
+@property (nonatomic, copy) MPDataRulerViewDataChangedBlock dataChangedBlock;
 
 @end

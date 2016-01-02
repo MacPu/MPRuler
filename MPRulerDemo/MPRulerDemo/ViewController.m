@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "MPDateRulerView.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet MPDateRulerView *dateRulerView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
@@ -19,9 +23,10 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_dateRulerView setDataChangedBlock:^(NSInteger year, NSInteger month){
+        _dateLabel.text = [NSString stringWithFormat:@"%ld年%ld月",year, month];
+    }];
 }
-
 @end

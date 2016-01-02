@@ -121,6 +121,8 @@
     mainView.backgroundColor = [UIColor clearColor];
     mainView.alwaysBounceHorizontal = YES;
     mainView.delegate = self;
+    mainView.showsHorizontalScrollIndicator = NO;
+    mainView.showsVerticalScrollIndicator = NO;
     [self addSubview:mainView];
     self.mainView = mainView;
     
@@ -177,7 +179,23 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"offset x:%f",scrollView.contentOffset.x);
+    CGFloat offsetX = scrollView.contentOffset.x;
+    CGFloat x = 0;
+    for(MPRulerScale *scale in self.contentView.rulerScales){
+        CGFloat width = scale.scaleWidth + scale.scaleMargin.left + scale.scaleMargin.right;
+        if(offsetX <= (x + width) && offsetX >= x){
+            NSInteger item = [self.contentView.rulerScales indexOfObject:scale];
+            if(item != _currentItemIndex){
+                _currentItemIndex = item;
+                if([self.delegate  respondsToSelector:@selector(rulerView:didChangedIndicatorItem:)]){
+                    [self.delegate rulerView:self didChangedIndicatorItem:_currentItemIndex];
+                }
+                break;
+            }
+        }
+        
+        x += width;
+    }
 }
 
 @end
