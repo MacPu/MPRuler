@@ -8,40 +8,6 @@
 
 #import "MPRulerView.h"
 
-@interface MPRulerScale : NSObject
-
-@property (nonatomic, copy) NSString *scaleValue;
-@property (nonatomic, strong) UIColor *scaleValueColor;
-@property (nonatomic, strong) UIFont *scaleValueFont;
-@property (nonatomic, assign) UIOffset scaleValueOffset;
-
-@property (nonatomic, strong) UIColor *scaleColor;
-@property (nonatomic, assign) CGFloat scaleWidth;
-@property (nonatomic, assign) CGFloat scaleHeight;
-@property (nonatomic, assign) UIEdgeInsets scaleMargin;
-
-@end
-
-@implementation MPRulerScale
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.scaleColor = [UIColor blackColor];
-        self.scaleHeight = 10;
-        self.scaleWidth = 2;
-        self.scaleMargin = UIEdgeInsetsMake(0, 3, 0, 3);
-        
-        self.scaleValueColor = [UIColor greenColor];
-        self.scaleValueFont = [UIFont systemFontOfSize:10];
-        self.scaleValueOffset = UIOffsetMake(0, 5);
-    }
-    return self;
-}
-
-@end
-
 @interface MPRulerContentView : UIView
 
 @property (nonatomic, strong) NSArray<MPRulerScale *> *rulerScales;
@@ -187,6 +153,39 @@
     CGSize contentSize = frame.size;
     contentSize.width = MAX(contentSize.width, self.contentView.frame.size.width);
     self.mainView.contentSize = contentSize;
+}
+
+- (NSArray *)loadData
+{
+    NSMutableArray *scales = [[NSMutableArray alloc] init];
+    if([self.delegate respondsToSelector:@selector(numberOfSectionsInRulerView:)]){
+        NSInteger sectionNumber = [self.delegate numberOfSectionsInRulerView:self];
+        for(NSInteger section = 0; section < sectionNumber; section ++){
+            if([self.delegate respondsToSelector:@selector(rulerView:scaleForSection:)]){
+                [scales addObject:[self.delegate rulerView:self scaleForSection:section]];
+            }
+            
+            if([self.delegate respondsToSelector:@selector(rulerView:numberOfItemsInSection:)]){
+                NSInteger itemNumber =[self.delegate rulerView:self numberOfItemsInSection:section];
+                
+                for(NSInteger item = 0;item < itemNumber; item ++){
+                    if([self.delegate respondsToSelector:@selector(rulerView:scaleForItemAtIndexPath:)]){
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+                        [scales addObject:[self.delegate rulerView:self scaleForItemAtIndexPath:indexPath]];
+                    }
+                }
+            }
+        }
+    }
+    return scales;
+}
+
+- (void)reloadData
+{
+    self.contentView.rulerScales = [self loadData];
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 @end
