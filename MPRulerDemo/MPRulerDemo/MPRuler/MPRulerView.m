@@ -85,7 +85,10 @@
 
 @end
 
-@interface MPRulerView ()
+@interface MPRulerView () <UIScrollViewDelegate>
+{
+    NSInteger _currentItemIndex;
+}
 
 @property (nonatomic, strong) UIScrollView *mainView;
 @property (nonatomic, strong) MPRulerContentView *contentView;
@@ -117,6 +120,7 @@
     UIScrollView *mainView = [[UIScrollView alloc] init];
     mainView.backgroundColor = [UIColor clearColor];
     mainView.alwaysBounceHorizontal = YES;
+    mainView.delegate = self;
     [self addSubview:mainView];
     self.mainView = mainView;
     
@@ -150,22 +154,11 @@
 - (NSArray *)loadData
 {
     NSMutableArray *scales = [[NSMutableArray alloc] init];
-    if([self.delegate respondsToSelector:@selector(numberOfSectionsInRulerView:)]){
-        NSInteger sectionNumber = [self.delegate numberOfSectionsInRulerView:self];
-        for(NSInteger section = 0; section < sectionNumber; section ++){
-            if([self.delegate respondsToSelector:@selector(rulerView:scaleForSection:)]){
-                [scales addObject:[self.delegate rulerView:self scaleForSection:section]];
-            }
-            
-            if([self.delegate respondsToSelector:@selector(rulerView:numberOfItemsInSection:)]){
-                NSInteger itemNumber =[self.delegate rulerView:self numberOfItemsInSection:section];
-                
-                for(NSInteger item = 0;item < itemNumber; item ++){
-                    if([self.delegate respondsToSelector:@selector(rulerView:scaleForItemAtIndexPath:)]){
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
-                        [scales addObject:[self.delegate rulerView:self scaleForItemAtIndexPath:indexPath]];
-                    }
-                }
+    if([self.delegate respondsToSelector:@selector(numberOfItemsInRulerView:)]){
+        NSInteger itemNumber = [self.delegate numberOfItemsInRulerView:self];
+        for(NSInteger item = 0; item < itemNumber; item ++){
+            if([self.delegate respondsToSelector:@selector(rulerView:scaleForItem:)]){
+                [scales addObject:[self.delegate rulerView:self scaleForItem:item]];
             }
         }
     }
@@ -178,6 +171,13 @@
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
+}
+
+#pragma mark - UIScrollerViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"offset x:%f",scrollView.contentOffset.x);
 }
 
 @end

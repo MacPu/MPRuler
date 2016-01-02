@@ -13,13 +13,10 @@
 
 @protocol MPRulerViewDelegate <NSObject>
 
+- (NSInteger)numberOfItemsInRulerView:(MPRulerView *)rulerView;
+- (MPRulerScale *)rulerView:(MPRulerView *)rulerView scaleForItem:(NSInteger)item;
 
-- (NSInteger)numberOfSectionsInRulerView:(MPRulerView *)rulerView;
-
-- (NSInteger)rulerView:(MPRulerView *)rulerView numberOfItemsInSection:(NSInteger)section;
-
-- (MPRulerScale *)rulerView:(MPRulerView *)rulerView scaleForItemAtIndexPath:(NSIndexPath *)indexPath;
-- (MPRulerScale *)rulerView:(MPRulerView *)rulerView scaleForSection:(NSInteger)section;
+- (void)rulerView:(MPRulerView *)rulerView didChangedIndicatorItem:(NSInteger)item;
 
 @end
 
