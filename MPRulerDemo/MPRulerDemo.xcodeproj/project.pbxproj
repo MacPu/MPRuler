@@ -16,6 +16,7 @@
 		C994E8EF1C37823000AA4D95 /* MPRulerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E8EE1C37823000AA4D95 /* MPRulerDemoTests.m */; };
 		C994E8FA1C37823000AA4D95 /* MPRulerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E8F91C37823000AA4D95 /* MPRulerDemoUITests.m */; };
 		C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9091C3782D500AA4D95 /* MPRulerView.m */; };
+		C994E90D1C38290500AA4D95 /* MPRulerScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E90C1C38290500AA4D95 /* MPRulerScale.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		C994E8FB1C37823000AA4D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C994E9081C3782D500AA4D95 /* MPRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRulerView.h; sourceTree = "<group>"; };
 		C994E9091C3782D500AA4D95 /* MPRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerView.m; sourceTree = "<group>"; };
+		C994E90B1C38290500AA4D95 /* MPRulerScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRulerScale.h; sourceTree = "<group>"; };
+		C994E90C1C38290500AA4D95 /* MPRulerScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerScale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 			children = (
 				C994E9081C3782D500AA4D95 /* MPRulerView.h */,
 				C994E9091C3782D500AA4D95 /* MPRulerView.m */,
+				C994E90B1C38290500AA4D95 /* MPRulerScale.h */,
+				C994E90C1C38290500AA4D95 /* MPRulerScale.m */,
 			);
 			path = MPRuler;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				C994E8D91C37823000AA4D95 /* AppDelegate.m in Sources */,
 				C994E8D61C37823000AA4D95 /* main.m in Sources */,
 				C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */,
+				C994E90D1C38290500AA4D95 /* MPRulerScale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
