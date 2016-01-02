@@ -124,20 +124,7 @@
     [mainView addSubview:contentView];
     self.contentView = contentView;
     
-    NSMutableArray *scales = [[NSMutableArray alloc] init];
-    for(NSInteger i = 0; i< 100;i++){
-        MPRulerScale *scale = [[MPRulerScale alloc] init];
-        scale.scaleMargin = UIEdgeInsetsMake(5, 10, 0, 10);
-        [scales addObject:scale];
-        if(i % 3 == 0){
-            scale.scaleHeight = 15;
-            scale.scaleColor = [UIColor blueColor];
-            scale.scaleValue = [NSString stringWithFormat:@"%ld",1970 + i / 3];
-        }
-    }
-    contentView.rulerScales = scales;
-    
-    self.backgroundColor = [UIColor orangeColor];
+    contentView.rulerScales = [self loadData];
 }
 
 - (void)layoutSubviews
