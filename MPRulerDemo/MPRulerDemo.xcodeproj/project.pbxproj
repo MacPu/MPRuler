@@ -15,6 +15,7 @@
 		C994E8E41C37823000AA4D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C994E8E21C37823000AA4D95 /* LaunchScreen.storyboard */; };
 		C994E8EF1C37823000AA4D95 /* MPRulerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E8EE1C37823000AA4D95 /* MPRulerDemoTests.m */; };
 		C994E8FA1C37823000AA4D95 /* MPRulerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E8F91C37823000AA4D95 /* MPRulerDemoUITests.m */; };
+		C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9091C3782D500AA4D95 /* MPRulerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		C994E8F51C37823000AA4D95 /* MPRulerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MPRulerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C994E8F91C37823000AA4D95 /* MPRulerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPRulerDemoUITests.m; sourceTree = "<group>"; };
 		C994E8FB1C37823000AA4D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C994E9081C3782D500AA4D95 /* MPRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRulerView.h; sourceTree = "<group>"; };
+		C994E9091C3782D500AA4D95 /* MPRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		C994E8D31C37823000AA4D95 /* MPRulerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C994E9071C3782BC00AA4D95 /* MPRuler */,
 				C994E8D71C37823000AA4D95 /* AppDelegate.h */,
 				C994E8D81C37823000AA4D95 /* AppDelegate.m */,
 				C994E8DA1C37823000AA4D95 /* ViewController.h */,
@@ -138,6 +142,15 @@
 				C994E8FB1C37823000AA4D95 /* Info.plist */,
 			);
 			path = MPRulerDemoUITests;
+			sourceTree = "<group>";
+		};
+		C994E9071C3782BC00AA4D95 /* MPRuler */ = {
+			isa = PBXGroup;
+			children = (
+				C994E9081C3782D500AA4D95 /* MPRulerView.h */,
+				C994E9091C3782D500AA4D95 /* MPRulerView.m */,
+			);
+			path = MPRuler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +286,7 @@
 				C994E8DC1C37823000AA4D95 /* ViewController.m in Sources */,
 				C994E8D91C37823000AA4D95 /* AppDelegate.m in Sources */,
 				C994E8D61C37823000AA4D95 /* main.m in Sources */,
+				C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
