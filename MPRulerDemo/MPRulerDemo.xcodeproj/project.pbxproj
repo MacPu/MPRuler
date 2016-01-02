@@ -17,6 +17,7 @@
 		C994E8FA1C37823000AA4D95 /* MPRulerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E8F91C37823000AA4D95 /* MPRulerDemoUITests.m */; };
 		C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9091C3782D500AA4D95 /* MPRulerView.m */; };
 		C994E90D1C38290500AA4D95 /* MPRulerScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E90C1C38290500AA4D95 /* MPRulerScale.m */; };
+		C994E9111C382F5A00AA4D95 /* MPDateRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9101C382F5A00AA4D95 /* MPDateRulerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		C994E9091C3782D500AA4D95 /* MPRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerView.m; sourceTree = "<group>"; };
 		C994E90B1C38290500AA4D95 /* MPRulerScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRulerScale.h; sourceTree = "<group>"; };
 		C994E90C1C38290500AA4D95 /* MPRulerScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerScale.m; sourceTree = "<group>"; };
+		C994E90F1C382F5A00AA4D95 /* MPDateRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDateRulerView.h; sourceTree = "<group>"; };
+		C994E9101C382F5A00AA4D95 /* MPDateRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDateRulerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +153,22 @@
 		C994E9071C3782BC00AA4D95 /* MPRuler */ = {
 			isa = PBXGroup;
 			children = (
+				C994E90E1C382EB900AA4D95 /* Examlpe */,
 				C994E9081C3782D500AA4D95 /* MPRulerView.h */,
 				C994E9091C3782D500AA4D95 /* MPRulerView.m */,
 				C994E90B1C38290500AA4D95 /* MPRulerScale.h */,
 				C994E90C1C38290500AA4D95 /* MPRulerScale.m */,
 			);
 			path = MPRuler;
+			sourceTree = "<group>";
+		};
+		C994E90E1C382EB900AA4D95 /* Examlpe */ = {
+			isa = PBXGroup;
+			children = (
+				C994E90F1C382F5A00AA4D95 /* MPDateRulerView.h */,
+				C994E9101C382F5A00AA4D95 /* MPDateRulerView.m */,
+			);
+			path = Examlpe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +303,7 @@
 			files = (
 				C994E8DC1C37823000AA4D95 /* ViewController.m in Sources */,
 				C994E8D91C37823000AA4D95 /* AppDelegate.m in Sources */,
+				C994E9111C382F5A00AA4D95 /* MPDateRulerView.m in Sources */,
 				C994E8D61C37823000AA4D95 /* main.m in Sources */,
 				C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */,
 				C994E90D1C38290500AA4D95 /* MPRulerScale.m in Sources */,

@@ -20,7 +20,7 @@
         self.scaleWidth = 2;
         self.scaleMargin = UIEdgeInsetsMake(0, 3, 0, 3);
         
-        self.scaleValueColor = [UIColor greenColor];
+        self.scaleValueColor = [UIColor blackColor];
         self.scaleValueFont = [UIFont systemFontOfSize:10];
         self.scaleValueOffset = UIOffsetMake(0, 5);
     }

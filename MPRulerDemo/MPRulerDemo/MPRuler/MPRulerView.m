@@ -98,7 +98,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
+        [self __commonInit];
     }
     return self;
 }
@@ -107,12 +107,12 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self commonInit];
+        [self __commonInit];
     }
     return self;
 }
 
-- (void)commonInit
+- (void)__commonInit
 {
     UIScrollView *mainView = [[UIScrollView alloc] init];
     mainView.backgroundColor = [UIColor clearColor];
@@ -121,10 +121,15 @@
     self.mainView = mainView;
     
     MPRulerContentView *contentView = [[MPRulerContentView alloc] init];
+    contentView.clipsToBounds = NO;
     [mainView addSubview:contentView];
     self.contentView = contentView;
-    
-    contentView.rulerScales = [self loadData];
+}
+
+- (void)setDelegate:(id<MPRulerViewDelegate>)delegate
+{
+    _delegate = delegate;
+    self.contentView.rulerScales = [self loadData];
 }
 
 - (void)layoutSubviews
