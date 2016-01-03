@@ -211,4 +211,11 @@
     }
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(self.autoAlign){
+        [self scrollToItem:_currentItemIndex];
+    }
+}
+
 @end

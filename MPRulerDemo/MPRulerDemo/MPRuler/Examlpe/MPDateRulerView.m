@@ -35,6 +35,7 @@
 - (void)commonInit
 {
     self.delegate = self;
+    self.autoAlign = YES;
     self.backgroundColor = [UIColor orangeColor];
 }
 
