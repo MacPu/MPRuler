@@ -175,6 +175,19 @@
     [self layoutIfNeeded];
 }
 
+- (void)scrollToItem:(NSInteger)item
+{
+    CGFloat offsetX = 0;
+    for(NSInteger i = 0; i < item; i++){
+        MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:i];
+        offsetX += scale.scaleWidth + scale.scaleMargin.left + scale.scaleMargin.right;
+    }
+    MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:item];
+    offsetX += scale.scaleWidth/2 + scale.scaleMargin.left;
+    
+    [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+}
+
 #pragma mark - UIScrollerViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

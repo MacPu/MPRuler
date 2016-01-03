@@ -26,4 +26,6 @@
 
 - (void)reloadData;
 
+- (void)scrollToItem:(NSInteger)item;
+
 @end
