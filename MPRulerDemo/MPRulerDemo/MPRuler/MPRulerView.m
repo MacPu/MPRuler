@@ -7,6 +7,7 @@
 //
 
 #import "MPRulerView.h"
+#import "MPRulerDefaultIndicatorView.h"
 
 @interface MPRulerContentView : UIView
 
@@ -147,10 +148,12 @@
     self.mainView.frame = frame;
     self.contentView.frame = frame;
     [self.contentView sizeToFit];
+    [self addSubview:self.indicatorView];
     
     CGSize contentSize = frame.size;
     contentSize.width = MAX(contentSize.width, self.contentView.frame.size.width);
     self.mainView.contentSize = contentSize;
+    [self fitToIndicatorView];
 }
 
 - (NSArray *)loadData
@@ -186,6 +189,36 @@
     offsetX += scale.scaleWidth / 2 + scale.scaleMargin.left;
     
     [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+}
+
+- (UIView *)indicatorView
+{
+    if(!_indicatorView){
+        _indicatorView = [[MPRulerDefaultIndicatorView alloc] init];
+        _indicatorView.frame = CGRectMake((CGRectGetWidth(self.frame) - 20) / 2, 0, 20, 10);
+    }
+    return _indicatorView;
+}
+
+
+- (void)fitToIndicatorView
+{
+    if(self.contentView.rulerScales && self.contentView.rulerScales.count && _indicatorView){
+        MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:0];
+        CGFloat right = CGRectGetMidX(self.indicatorView.frame);
+        right -= scale.scaleWidth / 2;
+        UIEdgeInsets margin = scale.scaleMargin;
+        margin.left = right;
+        scale.scaleMargin = margin;
+        
+        MPRulerScale *scale1 = [self.contentView.rulerScales lastObject];
+        right = CGRectGetMidX(self.indicatorView.frame);
+        right -= scale1.scaleWidth / 2;
+        margin = scale1.scaleMargin;
+        margin.right = right;
+        scale1.scaleMargin = margin;
+        
+    }
 }
 
 #pragma mark - UIScrollerViewDelegate

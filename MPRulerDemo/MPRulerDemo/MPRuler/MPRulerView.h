@@ -26,6 +26,8 @@
 
 @property (nonatomic, assign) BOOL autoAlign;
 
+@property (nonatomic, strong) UIView *indicatorView;
+
 - (void)reloadData;
 
 - (void)scrollToItem:(NSInteger)item;

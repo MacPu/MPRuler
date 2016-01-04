@@ -18,6 +18,7 @@
 		C994E90A1C3782D500AA4D95 /* MPRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9091C3782D500AA4D95 /* MPRulerView.m */; };
 		C994E90D1C38290500AA4D95 /* MPRulerScale.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E90C1C38290500AA4D95 /* MPRulerScale.m */; };
 		C994E9111C382F5A00AA4D95 /* MPDateRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9101C382F5A00AA4D95 /* MPDateRulerView.m */; };
+		C994E9B01C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C994E9AF1C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		C994E90C1C38290500AA4D95 /* MPRulerScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerScale.m; sourceTree = "<group>"; };
 		C994E90F1C382F5A00AA4D95 /* MPDateRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDateRulerView.h; sourceTree = "<group>"; };
 		C994E9101C382F5A00AA4D95 /* MPDateRulerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDateRulerView.m; sourceTree = "<group>"; };
+		C994E9AE1C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRulerDefaultIndicatorView.h; sourceTree = "<group>"; };
+		C994E9AF1C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRulerDefaultIndicatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				C994E9091C3782D500AA4D95 /* MPRulerView.m */,
 				C994E90B1C38290500AA4D95 /* MPRulerScale.h */,
 				C994E90C1C38290500AA4D95 /* MPRulerScale.m */,
+				C994E9AE1C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.h */,
+				C994E9AF1C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.m */,
 			);
 			path = MPRuler;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C994E9B01C3A59BE00AA4D95 /* MPRulerDefaultIndicatorView.m in Sources */,
 				C994E8DC1C37823000AA4D95 /* ViewController.m in Sources */,
 				C994E8D91C37823000AA4D95 /* AppDelegate.m in Sources */,
 				C994E9111C382F5A00AA4D95 /* MPDateRulerView.m in Sources */,
@@ -530,6 +536,7 @@
 				C994E9001C37823000AA4D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C994E9011C37823000AA4D95 /* Build configuration list for PBXNativeTarget "MPRulerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +545,7 @@
 				C994E9031C37823000AA4D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C994E9041C37823000AA4D95 /* Build configuration list for PBXNativeTarget "MPRulerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +554,7 @@
 				C994E9061C37823000AA4D95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
