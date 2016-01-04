@@ -57,24 +57,17 @@
     MPRulerScale *itemScale = [[MPRulerScale alloc] init];
     if(item % 12 == 0){
         itemScale.scaleColor = [UIColor whiteColor];
-        itemScale.scaleWidth = 3;
+        itemScale.scaleWidth = 6;
         itemScale.scaleHeight = 15;
         itemScale.scaleMargin = UIEdgeInsetsMake(1, 3, 0, 3);
         itemScale.scaleValue = [NSString stringWithFormat:@"%ld",1970 + item / 12];
         itemScale.scaleValueColor = [UIColor whiteColor];
-        
-        if(item ==0){
-            itemScale.scaleMargin = UIEdgeInsetsMake(1, (CGRectGetWidth(self.frame) - itemScale.scaleWidth) / 2, 0, 3);
-        }
     }
     else{
         itemScale.scaleColor = [UIColor whiteColor];
-        itemScale.scaleWidth = 1.5;
-        itemScale.scaleHeight = 5;
+        itemScale.scaleWidth = 3;
+        itemScale.scaleHeight = 10;
         itemScale.scaleMargin = UIEdgeInsetsMake(1, 3, 0, 3);
-        if(item == ([self numberOfItemsInRulerView:rulerView] - 1)){
-            itemScale.scaleMargin = UIEdgeInsetsMake(1, 3, 0, (CGRectGetWidth(self.frame) - itemScale.scaleWidth) / 2);
-        }
     }
     return itemScale;
 }

@@ -52,15 +52,16 @@
         CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
         [scale.scaleColor getRed:&red green:&green blue:&blue alpha:&alpha];
         CGContextSetRGBStrokeColor(context, red, green, blue, alpha);
-        CGContextMoveToPoint(context, x + scale.scaleMargin.left, scale.scaleMargin.top);
-        CGContextAddLineToPoint(context, x + scale.scaleMargin.left, scale.scaleMargin.top + scale.scaleHeight);
+        CGFloat marginLeft = x + scale.scaleMargin.left + scale.scaleWidth / 2;
+        CGContextMoveToPoint(context, marginLeft, scale.scaleMargin.top);
+        CGContextAddLineToPoint(context, marginLeft, scale.scaleMargin.top + scale.scaleHeight);
         CGContextStrokePath(context);
         
         if(scale.scaleValue){
             NSDictionary *attributes = @{NSForegroundColorAttributeName:scale.scaleValueColor,
                                          NSFontAttributeName:scale.scaleValueFont};
             CGSize valueSize = [scale.scaleValue sizeWithAttributes:attributes];
-            CGRect rect = CGRectMake(x + scale.scaleMargin.left + scale.scaleValueOffset.horizontal + (scale.scaleWidth - valueSize.width) / 2,
+            CGRect rect = CGRectMake(marginLeft + scale.scaleValueOffset.horizontal + (scale.scaleWidth - valueSize.width) / 2,
                                      scale.scaleMargin.top + scale.scaleHeight + scale.scaleValueOffset.vertical,
                                      valueSize.width, valueSize.height);
             [scale.scaleValue drawInRect:rect withAttributes:attributes];
@@ -150,10 +151,12 @@
     [self.contentView sizeToFit];
     [self addSubview:self.indicatorView];
     
+    
     CGSize contentSize = frame.size;
     contentSize.width = MAX(contentSize.width, self.contentView.frame.size.width);
     self.mainView.contentSize = contentSize;
     [self fitToIndicatorView];
+    
 }
 
 - (NSArray *)loadData
@@ -187,6 +190,9 @@
     }
     MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:item];
     offsetX += scale.scaleWidth / 2 + scale.scaleMargin.left;
+    if(_indicatorView){
+        offsetX -= CGRectGetMidX(_indicatorView.frame);
+    }
     
     [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
 }
@@ -195,7 +201,7 @@
 {
     if(!_indicatorView){
         _indicatorView = [[MPRulerDefaultIndicatorView alloc] init];
-        _indicatorView.frame = CGRectMake((CGRectGetWidth(self.frame) - 20) / 2, 0, 20, 10);
+        _indicatorView.frame = CGRectMake((CGRectGetWidth(self.frame) - 16) / 2, 0, 16, 8);
     }
     return _indicatorView;
 }
@@ -226,6 +232,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetX = scrollView.contentOffset.x;
+    if(_indicatorView){
+        offsetX += CGRectGetMidX(_indicatorView.frame);
+    }
     CGFloat x = 0;
     for(MPRulerScale *scale in self.contentView.rulerScales){
         CGFloat width = scale.scaleWidth + scale.scaleMargin.left + scale.scaleMargin.right;
