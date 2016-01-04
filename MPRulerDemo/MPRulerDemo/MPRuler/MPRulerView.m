@@ -206,7 +206,6 @@
     return _indicatorView;
 }
 
-
 - (void)fitToIndicatorView
 {
     if(self.contentView.rulerScales && self.contentView.rulerScales.count && _indicatorView){
@@ -224,6 +223,11 @@
         margin.right = right;
         scale1.scaleMargin = margin;
         
+        [self.contentView sizeToFit];
+        CGSize contentSize = self.contentView.frame.size;
+        contentSize.width = MAX(contentSize.width, self.contentView.frame.size.width);
+        self.mainView.contentSize = contentSize;
+        [self scrollToItem:_currentItemIndex];
     }
 }
 
