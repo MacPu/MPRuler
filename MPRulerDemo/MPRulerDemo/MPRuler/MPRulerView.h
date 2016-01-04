@@ -25,6 +25,7 @@
 @property (nonatomic, weak) id<MPRulerViewDelegate> delegate;
 
 @property (nonatomic, assign) BOOL autoAlign;
+
 - (void)reloadData;
 
 - (void)scrollToItem:(NSInteger)item;

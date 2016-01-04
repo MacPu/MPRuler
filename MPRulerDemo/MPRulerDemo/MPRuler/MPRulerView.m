@@ -183,7 +183,7 @@
         offsetX += scale.scaleWidth + scale.scaleMargin.left + scale.scaleMargin.right;
     }
     MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:item];
-    offsetX += scale.scaleWidth/2 + scale.scaleMargin.left;
+    offsetX += scale.scaleWidth / 2 + scale.scaleMargin.left;
     
     [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
 }
@@ -212,6 +212,13 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(self.autoAlign){
+        [self scrollToItem:_currentItemIndex];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if(self.autoAlign){
         [self scrollToItem:_currentItemIndex];
