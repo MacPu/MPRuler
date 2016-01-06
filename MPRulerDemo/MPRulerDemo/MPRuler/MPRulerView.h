@@ -28,8 +28,12 @@
 
 @property (nonatomic, strong) UIView *indicatorView;
 
+@property (nonatomic, assign) NSInteger currentItemIndex;
+
 - (void)reloadData;
 
 - (void)scrollToItem:(NSInteger)item;
+
+- (void)scrollToItem:(NSInteger)item withAnimate:(BOOL)animate;
 
 @end

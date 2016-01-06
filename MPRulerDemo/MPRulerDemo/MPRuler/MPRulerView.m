@@ -88,9 +88,6 @@
 @end
 
 @interface MPRulerView () <UIScrollViewDelegate>
-{
-    NSInteger _currentItemIndex;
-}
 
 @property (nonatomic, strong) UIScrollView *mainView;
 @property (nonatomic, strong) MPRulerContentView *contentView;
@@ -183,6 +180,11 @@
 
 - (void)scrollToItem:(NSInteger)item
 {
+    [self scrollToItem:item withAnimate:YES];
+}
+
+- (void)scrollToItem:(NSInteger)item withAnimate:(BOOL)animate
+{
     CGFloat offsetX = 0;
     for(NSInteger i = 0; i < item; i++){
         MPRulerScale *scale = [self.contentView.rulerScales objectAtIndex:i];
@@ -194,7 +196,7 @@
         offsetX -= CGRectGetMidX(_indicatorView.frame);
     }
     
-    [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+    [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:animate];
 }
 
 - (UIView *)indicatorView
@@ -227,7 +229,7 @@
         CGSize contentSize = self.contentView.frame.size;
         contentSize.width = MAX(contentSize.width, self.contentView.frame.size.width);
         self.mainView.contentSize = contentSize;
-        [self scrollToItem:_currentItemIndex];
+        [self scrollToItem:_currentItemIndex withAnimate:NO];
     }
 }
 
@@ -245,12 +247,11 @@
         if(offsetX <= (x + width) && offsetX >= x){
             NSInteger item = [self.contentView.rulerScales indexOfObject:scale];
             if(item != _currentItemIndex){
-                _currentItemIndex = item;
                 if([self.delegate  respondsToSelector:@selector(rulerView:didChangedIndicatorItem:)]){
                     [self.delegate rulerView:self didChangedIndicatorItem:_currentItemIndex];
                 }
-                break;
             }
+            break;
         }
         
         x += width;
@@ -259,16 +260,35 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    CGFloat offsetX = scrollView.contentOffset.x;
+    if(_indicatorView){
+        offsetX += CGRectGetMidX(_indicatorView.frame);
+    }
+    CGFloat x = 0;
+    for(MPRulerScale *scale in self.contentView.rulerScales){
+        CGFloat width = scale.scaleWidth + scale.scaleMargin.left + scale.scaleMargin.right;
+        if(offsetX <= (x + width) && offsetX >= x){
+            NSInteger item = [self.contentView.rulerScales indexOfObject:scale];
+            if(item != _currentItemIndex){
+                _currentItemIndex = item;
+                if([self.delegate  respondsToSelector:@selector(rulerView:didChangedIndicatorItem:)]){
+                    [self.delegate rulerView:self didChangedIndicatorItem:_currentItemIndex];
+                }
+            }
+            break;
+        }
+        
+        x += width;
+    }
+    
     if(self.autoAlign){
-        [self scrollToItem:_currentItemIndex];
+        [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if(self.autoAlign){
-        [self scrollToItem:_currentItemIndex];
-    }
+    [self scrollViewDidEndDragging:scrollView willDecelerate:YES];
 }
 
 @end
