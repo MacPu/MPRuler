@@ -248,7 +248,7 @@
             NSInteger item = [self.contentView.rulerScales indexOfObject:scale];
             if(item != _currentItemIndex){
                 if([self.delegate  respondsToSelector:@selector(rulerView:didChangedIndicatorItem:)]){
-                    [self.delegate rulerView:self didChangedIndicatorItem:_currentItemIndex];
+                    [self.delegate rulerView:self didChangedIndicatorItem:item];
                 }
             }
             break;
@@ -272,7 +272,7 @@
             if(item != _currentItemIndex){
                 _currentItemIndex = item;
                 if([self.delegate  respondsToSelector:@selector(rulerView:didChangedIndicatorItem:)]){
-                    [self.delegate rulerView:self didChangedIndicatorItem:_currentItemIndex];
+                    [self.delegate rulerView:self didChangedIndicatorItem:item];
                 }
             }
             break;
@@ -282,7 +282,7 @@
     }
     
     if(self.autoAlign){
-        [self.mainView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        [self scrollToItem:_currentItemIndex];
     }
 }
 
